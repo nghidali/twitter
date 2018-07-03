@@ -41,6 +41,35 @@
                 NSLog(@"Successfully favorited the following Tweet: %@", tweet.text);
             }
         }];
+    
+}
+- (IBAction)didTapRetweet:(id)sender {
+    if(!self.tweet.retweeted)
+        [[APIManager shared] retweet:self.tweet completion:^(Tweet *tweet, NSError *error) {
+            if(error){
+                NSLog(@"Error favoriting tweet: %@", error.localizedDescription);
+            }
+            else{
+                self.tweet.retweeted = YES;
+                self.retweetButton.selected = YES;
+                self.tweet.retweetCount += 1;
+                self.retweet.text = [NSString stringWithFormat:@"%i",self.tweet.favoriteCount];
+                NSLog(@"Successfully favorited the following Tweet: %@", tweet.text);
+            }
+        }];
+    else
+        [[APIManager shared] unretweet: self.tweet completion:^(Tweet *tweet, NSError *error) {
+            if(error){
+                NSLog(@"Error favoriting tweet: %@", error.localizedDescription);
+            }
+            else{
+                self.tweet.retweeted = NO;
+                self.retweetButton.selected = NO;
+                self.tweet.retweetCount -= 1;
+                self.retweet.text = [NSString stringWithFormat:@"%i",self.tweet.retweetCount];
+                NSLog(@"Successfully favorited the following Tweet: %@", tweet.text);
+            }
+        }];
 }
 
 - (void)awakeFromNib {
@@ -56,8 +85,13 @@
 - (void) setAttributes: (Tweet*)tweet {
     User* user = [tweet user];
     self.tweet = tweet;
+    
     if(self.tweet.favorited == YES) self.likeButton.selected = YES;
     else self.likeButton.selected = NO;
+    
+    if(self.tweet.retweeted == YES) self.retweetButton.selected = YES;
+    else self.retweetButton.selected = NO;
+    
     self.userLabel.text = [user name];
     self.bodyLabel.text = [tweet text];
     self.dateLabel.text = [tweet createdAtString];
