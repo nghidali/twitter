@@ -134,7 +134,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Like" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j2F-Jh-Tdm">
-                                                    <rect key="frame" x="263" y="155" width="22" height="14"/>
+                                                    <rect key="frame" x="263" y="155" width="101" height="14"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                     <nil key="textColor"/>
@@ -144,11 +144,16 @@
                                                     <rect key="frame" x="230" y="144" width="32" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Button" image="favor-icon"/>
+                                                    <state key="selected" image="favor-icon-red"/>
+                                                    <connections>
+                                                        <action selector="didTapLike:" destination="VBo-Yo-wsM" eventType="touchUpInside" id="ZXt-v3-BNU"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N3d-uW-MRF">
                                                     <rect key="frame" x="119" y="147" width="26" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <state key="normal" title="Button" image="retweet-icon"/>
+                                                    <state key="selected" image="retweet-icon-green"/>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qFs-wZ-e0z">
                                                     <rect key="frame" x="2" y="145" width="35" height="30"/>
@@ -160,10 +165,13 @@
                                         <connections>
                                             <outlet property="bodyLabel" destination="ldT-BP-vSb" id="KfQ-DS-RrE"/>
                                             <outlet property="comment" destination="AYi-lb-579" id="hXZ-7Z-M1p"/>
+                                            <outlet property="commentButton" destination="qFs-wZ-e0z" id="uwL-c0-GvK"/>
                                             <outlet property="dateLabel" destination="b6i-mr-z3K" id="QoE-oB-oxe"/>
                                             <outlet property="like" destination="j2F-Jh-Tdm" id="atL-pd-t9J"/>
+                                            <outlet property="likeButton" destination="fP7-AJ-tNE" id="l2s-GZ-RnY"/>
                                             <outlet property="profilePic" destination="kbv-Yw-eOq" id="rLy-sg-LLu"/>
                                             <outlet property="retweet" destination="PVy-3Y-zo7" id="wzc-Nr-xmQ"/>
+                                            <outlet property="retweetButton" destination="N3d-uW-MRF" id="XcK-9w-EUc"/>
                                             <outlet property="screenName" destination="tPF-0Y-asN" id="oih-sn-PVP"/>
                                             <outlet property="userLabel" destination="2oS-QX-B4f" id="2ou-fI-sFY"/>
                                         </connections>
@@ -278,7 +286,9 @@
         <image name="close-icon" width="26" height="24"/>
         <image name="edit-icon" width="30" height="27"/>
         <image name="favor-icon" width="30" height="30"/>
+        <image name="favor-icon-red" width="30" height="30"/>
         <image name="reply-icon" width="30" height="30"/>
         <image name="retweet-icon" width="30" height="30"/>
+        <image name="retweet-icon-green" width="30" height="30"/>
     </resources>
 </document>

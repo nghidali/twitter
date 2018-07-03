@@ -10,8 +10,38 @@
 #import "User.h"
 #import "Tweet.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
+#import "APIManager.h"
 
 @implementation TweetCell
+
+- (IBAction)didTapLike:(id)sender {
+    if(!self.tweet.favorited)
+        [[APIManager shared] favorite:self.tweet completion:^(Tweet *tweet, NSError *error) {
+            if(error){
+                NSLog(@"Error favoriting tweet: %@", error.localizedDescription);
+            }
+            else{
+                self.tweet.favorited = YES;
+                self.likeButton.selected = YES;
+                self.tweet.favoriteCount += 1;
+                self.like.text = [NSString stringWithFormat:@"%i",self.tweet.favoriteCount];
+                NSLog(@"Successfully favorited the following Tweet: %@", tweet.text);
+            }
+        }];
+    else
+        [[APIManager shared] unfavorite: self.tweet completion:^(Tweet *tweet, NSError *error) {
+            if(error){
+                NSLog(@"Error favoriting tweet: %@", error.localizedDescription);
+            }
+            else{
+                self.tweet.favorited = NO;
+                self.likeButton.selected = NO;
+                self.tweet.favoriteCount -= 1;
+                self.like.text = [NSString stringWithFormat:@"%i",self.tweet.favoriteCount];
+                NSLog(@"Successfully favorited the following Tweet: %@", tweet.text);
+            }
+        }];
+}
 
 - (void)awakeFromNib {
     [super awakeFromNib];
@@ -25,6 +55,9 @@
 }
 - (void) setAttributes: (Tweet*)tweet {
     User* user = [tweet user];
+    self.tweet = tweet;
+    if(self.tweet.favorited == YES) self.likeButton.selected = YES;
+    else self.likeButton.selected = NO;
     self.userLabel.text = [user name];
     self.bodyLabel.text = [tweet text];
     self.dateLabel.text = [tweet createdAtString];
