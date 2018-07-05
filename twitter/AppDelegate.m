@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "APIManager.h"
-
+#import "LoginViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -25,6 +25,12 @@
     }
     
     return YES;
+}
+- (IBAction)logoutClicked:(id)sender {
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
+    appDelegate.window.rootViewController = loginViewController;
 }
 
 
