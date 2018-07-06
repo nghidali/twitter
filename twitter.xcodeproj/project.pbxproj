@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		557D7B17F5D2B5715B705AA9 /* libPods-twitter.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 43D6142D6F34C1AE98EE4951 /* libPods-twitter.a */; };
 		673E6CDD20EECD410012565F /* TweetDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 673E6CDC20EECD410012565F /* TweetDetailViewController.m */; };
+		673E6CE320F004C80012565F /* InfiniteScrollActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 673E6CE220F004C80012565F /* InfiniteScrollActivityView.m */; };
+		673E6CE620F009670012565F /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 673E6CE520F009670012565F /* ProfileViewController.m */; };
 		67C444EC20EAC69E005ADAC7 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 67C444EB20EAC69E005ADAC7 /* User.m */; };
 		67C444EF20EAC972005ADAC7 /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 67C444EE20EAC972005ADAC7 /* Tweet.m */; };
 		67C444FB20EAD912005ADAC7 /* TweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 67C444FA20EAD912005ADAC7 /* TweetCell.m */; };
@@ -29,6 +31,10 @@
 		43D6142D6F34C1AE98EE4951 /* libPods-twitter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-twitter.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		673E6CDB20EECD410012565F /* TweetDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TweetDetailViewController.h; sourceTree = "<group>"; };
 		673E6CDC20EECD410012565F /* TweetDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TweetDetailViewController.m; sourceTree = "<group>"; };
+		673E6CE120F004C80012565F /* InfiniteScrollActivityView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfiniteScrollActivityView.h; sourceTree = "<group>"; };
+		673E6CE220F004C80012565F /* InfiniteScrollActivityView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfiniteScrollActivityView.m; sourceTree = "<group>"; };
+		673E6CE420F009670012565F /* ProfileViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		673E6CE520F009670012565F /* ProfileViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		67C444EA20EAC69E005ADAC7 /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		67C444EB20EAC69E005ADAC7 /* User.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		67C444ED20EAC972005ADAC7 /* Tweet.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tweet.h; sourceTree = "<group>"; };
@@ -104,6 +110,8 @@
 				6AD278D820BC4B950085BC29 /* AppDelegate.h */,
 				6AD278D920BC4B950085BC29 /* AppDelegate.m */,
 				6AD278DE20BC4B950085BC29 /* Main.storyboard */,
+				673E6CE420F009670012565F /* ProfileViewController.h */,
+				673E6CE520F009670012565F /* ProfileViewController.m */,
 				6AD278E120BC4B970085BC29 /* Assets.xcassets */,
 				6AD278E320BC4B970085BC29 /* LaunchScreen.storyboard */,
 				6AD278E620BC4B970085BC29 /* Info.plist */,
@@ -133,6 +141,8 @@
 		6AD278FF20BCBF280085BC29 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				673E6CE120F004C80012565F /* InfiniteScrollActivityView.h */,
+				673E6CE220F004C80012565F /* InfiniteScrollActivityView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -282,10 +292,12 @@
 				6AD278F320BCA6020085BC29 /* BDBOAuth1SessionManager+SFAuthenticationSession.m in Sources */,
 				67C444EC20EAC69E005ADAC7 /* User.m in Sources */,
 				67C444FE20EC0D93005ADAC7 /* ComposeViewController.m in Sources */,
+				673E6CE320F004C80012565F /* InfiniteScrollActivityView.m in Sources */,
 				6AD278E820BC4B970085BC29 /* main.m in Sources */,
 				67C444EF20EAC972005ADAC7 /* Tweet.m in Sources */,
 				6AD2790620BCC0380085BC29 /* LoginViewController.m in Sources */,
 				6AD278DA20BC4B950085BC29 /* AppDelegate.m in Sources */,
+				673E6CE620F009670012565F /* ProfileViewController.m in Sources */,
 				673E6CDD20EECD410012565F /* TweetDetailViewController.m in Sources */,
 				6AD278F620BCB68B0085BC29 /* APIManager.m in Sources */,
 				6AD2790920BCC04D0085BC29 /* TimelineViewController.m in Sources */,

@@ -14,6 +14,10 @@
 
 @implementation TweetCell
 
+- (void) didTapUserProfile:(UITapGestureRecognizer *)sender{
+    // TODO: Call method on delegate
+}
+
 - (IBAction)didTapLike:(id)sender {
     if(!self.tweet.favorited)
         [[APIManager shared] favorite:self.tweet completion:^(Tweet *tweet, NSError *error) {
@@ -74,7 +78,9 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    UITapGestureRecognizer *profileTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(didTapUserProfile:)];
+    [self.profilePic addGestureRecognizer:profileTapGestureRecognizer];
+    [self.profilePic setUserInteractionEnabled:YES];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

@@ -15,7 +15,8 @@ static NSString * const consumerSecret = @"ZZ9nvEg6SAVuki2X8XMoQgDA3kwLcq5QwUg3T
 // Enter your consumer secret here
 
 @interface APIManager()
-
+@property NSUInteger *max_id;
+@property NSUInteger *count;
 @end
 
 @implementation APIManager
@@ -60,11 +61,49 @@ static NSString * const consumerSecret = @"ZZ9nvEg6SAVuki2X8XMoQgDA3kwLcq5QwUg3T
     }];
 }
 
+-(void)updateMaxId:(NSArray*) tweets{
+    NSInteger * min_id = [tweets[0][@"id_str"] integerValue];
+    for (NSDictionary *dic in tweets){
+        NSInteger* curr_id = [dic[@"id_str"] integerValue];
+        if(curr_id < min_id){
+            min_id = curr_id;
+        }
+    }
+    self.max_id = min_id;
+}
+
+- (void)getHomeTimelineWithCompletionReload:(void(^)(NSArray *tweets, NSError *error))completion {
+    NSDictionary *parameters = nil;
+    //if(self.max_id != nil){
+    if(self.count == nil){
+        self.count = 20;
+    }
+    if(self.count != nil){
+        //NSDictionary *parameters = @{@"max_id": [NSString stringWithFormat:@"%lu",self.max_id]};
+        NSDictionary *parameters = @{@"count": [NSString stringWithFormat:@"%lu",self.count]};
+        self.count += 20;
+    }
+    [self GET:@"1.1/statuses/home_timeline.json"
+   parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSArray *  _Nullable tweetDictionaries) {
+       // Success
+       NSArray *tweets  = tweetDictionaries;
+       if([tweets count] > 0){
+           [self updateMaxId:tweets];
+       }
+       completion(tweets, nil);
+   } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+       // There was a problem
+       NSLog(@"ERROR: COULD NOT GET TWEETS");
+       completion(nil, error);
+   }];
+}
+
 - (void)getHomeTimelineWithCompletion:(void(^)(NSArray *tweets, NSError *error))completion {
     [self GET:@"1.1/statuses/home_timeline.json"
    parameters:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSArray *  _Nullable tweetDictionaries) {
        // Success
        NSArray *tweets  = tweetDictionaries;
+       [self updateMaxId:tweets];
        completion(tweets, nil);
    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
        // There was a problem

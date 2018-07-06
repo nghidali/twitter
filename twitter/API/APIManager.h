@@ -17,6 +17,7 @@
 - (void)favorite:(Tweet *)tweet completion:(void (^)(Tweet *, NSError *))completion;
 - (void)unfavorite:(Tweet *)tweet completion:(void (^)(Tweet *, NSError *))completion;
 - (void)getHomeTimelineWithCompletion:(void(^)(NSArray *tweets, NSError *error))completion;
+- (void)getHomeTimelineWithCompletionReload:(void(^)(NSArray *tweets, NSError *error))completion;
 - (void)unretweet:(Tweet *)tweet completion:(void (^)(Tweet *, NSError *))completion;
 - (void)retweet:(Tweet *)tweet completion:(void (^)(Tweet *, NSError *))completion;
 @end

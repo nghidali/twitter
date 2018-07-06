@@ -14,10 +14,13 @@
 #import "LoginViewController.h"
 #import "AppDelegate.h"
 #import "TweetDetailViewController.h"
+#import "InfiniteScrollActivityView.h"
 
 @interface TimelineViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong,nonatomic) NSMutableArray *tweets;
+@property (assign, nonatomic) BOOL isMoreDataLoading;
+@property InfiniteScrollActivityView* loadingMoreView;
 @end
 
 @implementation TimelineViewController 
@@ -29,7 +32,54 @@
     [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:refreshControl atIndex:0];
     [super viewDidLoad];
+    
+    // Set up Infinite Scroll loading indicator
+    CGRect frame = CGRectMake(0, self.tableView.contentSize.height, self.tableView.bounds.size.width, InfiniteScrollActivityView.defaultHeight);
+    _loadingMoreView = [[InfiniteScrollActivityView alloc] initWithFrame:frame];
+    _loadingMoreView.hidden = true;
+    [self.tableView addSubview:_loadingMoreView];
+    
+    UIEdgeInsets insets = self.tableView.contentInset;
+    insets.bottom += InfiniteScrollActivityView.defaultHeight;
+    self.tableView.contentInset = insets;
+    
     [self GetTimeline];
+}
+
+-(void) scrollViewDidScroll:(UIScrollView *) scrollView{
+    if(!self.isMoreDataLoading){
+        // Calculate the position of one screen length before the bottom of the results
+        int scrollViewContentHeight = self.tableView.contentSize.height;
+        int scrollOffsetThreshold = scrollViewContentHeight - self.tableView.bounds.size.height;
+        
+        // When the user has scrolled past the threshold, start requesting
+        if(scrollView.contentOffset.y > scrollOffsetThreshold) {
+            self.isMoreDataLoading = true;
+            
+            // Update position of loadingMoreView, and start loading indicator
+            CGRect frame = CGRectMake(0, self.tableView.contentSize.height, self.tableView.bounds.size.width, InfiniteScrollActivityView.defaultHeight);
+            _loadingMoreView.frame = frame;
+            [_loadingMoreView startAnimating];
+            
+            [self loadData];
+        }
+    }
+}
+
+-(void) loadData {
+    // Get timeline
+    [[APIManager shared] getHomeTimelineWithCompletionReload:^(NSArray *tweets, NSError *error) {
+        if (tweets) {
+            NSLog(@"😎😎😎 Successfully loaded home timeline");
+            self.tweets = [Tweet tweetsWithArray:tweets];
+            self.isMoreDataLoading = false;
+            // Stop the loading indicator
+            [self->_loadingMoreView stopAnimating];
+            [self.tableView reloadData];
+        } else {
+            NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
+        }
+    }];
 }
 
 -(void) GetTimeline {
@@ -38,6 +88,7 @@
         if (tweets) {
             NSLog(@"😎😎😎 Successfully loaded home timeline");
             self.tweets = [Tweet tweetsWithArray:tweets];
+            //self.isMoreDataLoading = true;
             [self.tableView reloadData];
         } else {
             NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);

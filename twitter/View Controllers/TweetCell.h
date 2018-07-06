@@ -8,8 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "Tweet.h"
+@protocol TweetCellDelegate
+//- (void)tweetCell:(TweetCell *) tweetCell didTap: (User *)user;
+// TODO: Add required methods the delegate needs to implement
+@end
 
 @interface TweetCell : UITableViewCell
+//@property (nonatomic, weak) id<TweetCellDelegate> delegate;
 @property (weak, nonatomic) IBOutlet UILabel *userLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *bodyLabel;
@@ -21,7 +26,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *likeButton;
 @property (weak, nonatomic) IBOutlet UIButton *retweetButton;
 @property (weak, nonatomic) IBOutlet UIButton *commentButton;
-
+- (void) didTapUserProfile:(UITapGestureRecognizer *)sender;
 @property (strong,nonatomic) Tweet *tweet;
 
 - (void) setAttributes: (Tweet*) tweet;
