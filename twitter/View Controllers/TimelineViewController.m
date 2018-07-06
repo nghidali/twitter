@@ -13,6 +13,7 @@
 #import "TweetCell.h"
 #import "LoginViewController.h"
 #import "AppDelegate.h"
+#import "TweetDetailViewController.h"
 
 @interface TimelineViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -59,15 +60,29 @@
     [refreshControl endRefreshing];
 }
 
-/*
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    UINavigationController *navigationController = [segue destinationViewController];
-    ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
-    composeController.delegate = self;
-}*/
+    if ([segue.identifier isEqualToString:@"composeSegue"]){
+        UINavigationController *navigationController = [segue destinationViewController];
+        ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
+        composeController.delegate = self; //this line breaks logout
+    }
+    else if ([segue.identifier isEqualToString:@"detailTweetSegue"]){
+        TweetCell *cell = (TweetCell *) sender;
+        TweetDetailViewController *tweetDetailViewController = segue.destinationViewController;
+        tweetDetailViewController.tweetCell = cell;
+        /*NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        if(indexPath != nil){
+            Tweet* clickedTweet = self.tweets[indexPath.row];
+            TweetDetailViewController *tweetDetailViewController = segue.destinationViewController;
+            tweetDetailViewController.tweet = clickedTweet;
+        }*/
+    }
+}
 
 - (void)didTweet:(Tweet *)tweet {
-    [_tweets addObject:tweet];
+    //[_tweets addObject:tweet];
+    [_tweets insertObject:tweet atIndex:0];
     [self.tableView reloadData];
 }
 

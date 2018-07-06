@@ -95,6 +95,7 @@
     self.userLabel.text = [user name];
     self.bodyLabel.text = [tweet text];
     self.dateLabel.text = [tweet createdAtString];
+
     self.screenName.text = [@"@" stringByAppendingString:[user screenName]];
     self.retweet.text = [NSString stringWithFormat:@"%i",[tweet retweetCount]];
     self.like.text = [NSString stringWithFormat:@"%i",[tweet  favoriteCount]];
