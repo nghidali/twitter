@@ -15,6 +15,7 @@
 #import "AppDelegate.h"
 #import "TweetDetailViewController.h"
 #import "InfiniteScrollActivityView.h"
+#import "ProfileViewController.h"
 
 @interface TimelineViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -45,6 +46,9 @@
     
     [self GetTimeline];
 }
+- (void)tweetCell: (TweetCell *) tweetCell didTap: (User *) user{
+    [self performSegueWithIdentifier:@"profileSegue" sender:tweetCell];
+}
 
 -(void) scrollViewDidScroll:(UIScrollView *) scrollView{
     if(!self.isMoreDataLoading){
@@ -53,7 +57,9 @@
         int scrollOffsetThreshold = scrollViewContentHeight - self.tableView.bounds.size.height;
         
         // When the user has scrolled past the threshold, start requesting
-        if(scrollView.contentOffset.y > scrollOffsetThreshold) {
+        if(scrollView.contentOffset.y > scrollOffsetThreshold && !self.isMoreDataLoading )
+        
+        {
             self.isMoreDataLoading = true;
             
             // Update position of loadingMoreView, and start loading indicator
@@ -97,6 +103,7 @@
 }
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     TweetCell *tweetCell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell"];
+    tweetCell.delegate = self;
     [tweetCell setAttributes:self.tweets[indexPath.row]];
     return tweetCell;
 }
@@ -122,12 +129,17 @@
         TweetCell *cell = (TweetCell *) sender;
         TweetDetailViewController *tweetDetailViewController = segue.destinationViewController;
         tweetDetailViewController.tweetCell = cell;
+    }
+    else if ([segue.identifier isEqualToString:@"profileSegue"]){
+        TweetCell *cell = (TweetCell *) sender; //this aint right
+        ProfileViewController *profileViewController = segue.destinationViewController;
+        profileViewController.tweetCell = cell;
         /*NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-        if(indexPath != nil){
-            Tweet* clickedTweet = self.tweets[indexPath.row];
-            TweetDetailViewController *tweetDetailViewController = segue.destinationViewController;
-            tweetDetailViewController.tweet = clickedTweet;
-        }*/
+         if(indexPath != nil){
+         Tweet* clickedTweet = self.tweets[indexPath.row];
+         TweetDetailViewController *tweetDetailViewController = segue.destinationViewController;
+         tweetDetailViewController.tweet = clickedTweet;
+         }*/
     }
 }
 

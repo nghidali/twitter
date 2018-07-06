@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "TweetCell.h"
 @interface ProfileViewController : UIViewController
+
+@property (strong, nonatomic) TweetCell * tweetCell;
 
 @end

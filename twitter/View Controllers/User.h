@@ -12,5 +12,9 @@
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 @property (strong,nonatomic) NSString *name;
 @property (strong,nonatomic) NSString *screenName;
+@property long followersCount;
+@property long followingCount;
+@property long tweetCount;
+@property (strong,nonatomic) NSString * backgroundURL;
 @property (strong,nonatomic) NSString * profilePicURL;
 @end

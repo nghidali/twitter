@@ -7,6 +7,9 @@
 //
 
 #import "ProfileViewController.h"
+#import "Tweet.h"
+#import "TweetCell.h"
+#import "User.h"
 
 @interface ProfileViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *backgroundView;
@@ -21,6 +24,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    Tweet * t = _tweetCell.tweet;
+    User * u = t.user;
+    self.followingLabel.text = [NSString stringWithFormat:@"%lu", u.followingCount];
+    self.followersLabel.text = [NSString stringWithFormat:@"%lu", u.followersCount];;
+    self.tweetsLabel.text = [NSString stringWithFormat:@"%lu", u.tweetCount];
+    self.profilePic.image = _tweetCell.profilePic.image;
+    if(_tweetCell.backgroundPic){
+        self.backgroundView.image = _tweetCell.backgroundPic.image;
+    }
     // Do any additional setup after loading the view.
 }
 
