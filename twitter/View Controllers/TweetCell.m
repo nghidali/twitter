@@ -118,6 +118,7 @@
             [UIView animateWithDuration:1.5 animations:^{
                 weakSelf.profilePic.alpha = 1.0;
             }];
+            self.profilePic.layer.cornerRadius = self.profilePic.frame.size.width / 2;
         }
         else {
             NSLog(@"Image was cached so just update the image");

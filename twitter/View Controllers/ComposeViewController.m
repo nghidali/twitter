@@ -9,14 +9,28 @@
 #import "ComposeViewController.h"
 #import "APIManager.h"
 
-@interface ComposeViewController ()
+@interface ComposeViewController () <UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *closeButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *TweetButton;
 @property (weak, nonatomic) IBOutlet UITextView *tweetTextView;
-
+@property (weak, nonatomic) IBOutlet UILabel *characterCount;
 @end
 
 @implementation ComposeViewController
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    // Set the max character limit
+    int characterLimit = 140;
+    
+    // Construct what the new text would be if we allowed the user's latest edit
+    NSString *newText = [self.tweetTextView.text stringByReplacingCharactersInRange:range withString:text];
+    
+    // TODO: Update Character Count Label
+    self.characterCount.text = [NSString stringWithFormat:@"%lu",140 - [newText length]];
+    
+    // The new text should be allowed? True/False
+    return [newText length] < characterLimit;
+}
 
 //close button
 - (IBAction)onClick:(id)sender {
@@ -39,6 +53,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _tweetTextView.delegate = self;
     // Do any additional setup after loading the view.
 }
 
