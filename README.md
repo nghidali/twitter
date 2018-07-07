@@ -29,10 +29,10 @@ The following **optional** features are implemented:
 - [X] User should display the relative timestamp for each tweet "8m", "7h"
 - [X] User should be able to unretweet and unfavorite and should decrement the retweet and favorite count. Refer to [[this guide|unretweeting]] for help on implementing unretweeting.
 - [ ] Links in tweets are clickable.
-- [ ] User can tap the profile image in any tweet to see another user's profile
+- [X] User can tap the profile image in any tweet to see another user's profile
 - Contains the user header view: picture and tagline
 - Contains a section with the users basic stats: # tweets, # following, # followers
-- [ ] User can load more tweets once they reach the bottom of the feed using infinite loading similar to the actual Twitter client.
+- [X] User can load more tweets once they reach the bottom of the feed using infinite loading similar to the actual Twitter client.
 - [X] When composing, you should have a countdown for the number of characters remaining for the tweet (out of 140) (**1 point**)
 - [X] After creating a new tweet, a user should be able to view it in the timeline immediately without refetching the timeline from the network.
 - [ ] User can reply to any tweet, and replies should be prefixed with the username and the reply_id should be set when posting the tweet (**2 points**)
@@ -43,8 +43,9 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-- [ ] List anything else that you can get done to improve the app functionality!
-
+- [X] List anything else that you can get done to improve the app functionality!
+- [X] App animations to fade in the images
+- [X] Rounded corners on the profile pictures in the home tab.
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
 1.
@@ -54,7 +55,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://i.imgur.com/RPxDzfK.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 

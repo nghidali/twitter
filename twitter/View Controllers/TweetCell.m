@@ -134,26 +134,5 @@
     } failure:^(NSURLRequest *request, NSHTTPURLResponse * response, NSError *error) {
         NSLog(@"FAILURE!!!!!!!!");
     }];
-    NSString *backgroundPathString = user.backgroundURL;
-    if(backgroundPathString != (id)[NSNull null] && backgroundPathString.length != 0){
-        NSURL *backgroundUrl = [NSURL URLWithString:backgroundPathString];
-        NSURLRequest *brequest = [NSURLRequest requestWithURL:backgroundUrl];
-
-        [self.backgroundPic setImageWithURLRequest:brequest placeholderImage:nil
-                                        success:^(NSURLRequest *imageRequest, NSHTTPURLResponse *imageResponse, UIImage *image) {
-                                            
-                                            // imageResponse will be nil if the image is cached
-                                            if (imageResponse) {
-                                                NSLog(@"Image was NOT cached, fade in image");
-                                                self.backgroundPic.image = image;
-                                            }
-                                            else {
-                                                NSLog(@"Image was cached so just update the image");
-                                                self.backgroundPic.image = image;
-                                            }
-                                        } failure:^(NSURLRequest *request, NSHTTPURLResponse * response, NSError *error) {
-                                            NSLog(@"FAILURE!!!!!!!!");
-                                        }];
-    }
 }
 @end

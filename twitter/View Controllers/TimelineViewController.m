@@ -50,7 +50,7 @@
     [self performSegueWithIdentifier:@"profileSegue" sender:tweetCell];
 }
 
--(void) scrollViewDidScroll:(UIScrollView *) scrollView{
+/*-(void) scrollViewDidScroll:(UIScrollView *) scrollView{
     if(!self.isMoreDataLoading){
         // Calculate the position of one screen length before the bottom of the results
         int scrollViewContentHeight = self.tableView.contentSize.height;
@@ -70,7 +70,7 @@
             [self loadData];
         }
     }
-}
+}*/
 
 -(void) loadData {
     // Get timeline
@@ -78,10 +78,10 @@
         if (tweets) {
             NSLog(@"😎😎😎 Successfully loaded home timeline");
             self.tweets = [Tweet tweetsWithArray:tweets];
-            self.isMoreDataLoading = false;
             // Stop the loading indicator
             [self->_loadingMoreView stopAnimating];
             [self.tableView reloadData];
+            self.isMoreDataLoading = false;
         } else {
             NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
         }

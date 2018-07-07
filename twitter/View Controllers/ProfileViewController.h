@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "TweetCell.h"
+#import "User.h"
 @interface ProfileViewController : UIViewController
 
 @property (strong, nonatomic) TweetCell * tweetCell;
+@property (strong, nonatomic) User * user;
 
 @end
