@@ -8,9 +8,9 @@ Time spent: **X** hours spent in total
 
 The following **required** functionality is completed:
 
-- [X ] User sees app icon in home screen and styled launch screen
+- [X] User sees app icon in home screen and styled launch screen
 - [X] User can sign in using OAuth login flow
-- [X ] User can Logout
+- [X] User can Logout
 - [X] User can view last 20 tweets from their home timeline
 - [X] In the home timeline, user can view tweet with the user profile picture, username, tweet text, and timestamp.
 - [X] User can pull to refresh.
@@ -48,8 +48,8 @@ The following **additional** features are implemented:
 - [X] Rounded corners on the profile pictures in the home tab.
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-1.
-2.
+1. How did you load the user's information? 
+2.What data models did you use?
 
 ## Video Walkthrough
 
@@ -62,6 +62,9 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 ## Notes
 
 Describe any challenges encountered while building the app.
+Spent too much time on infinite loading, should have timeboxed it.
+Focus on features that will be high impact
+
 
 ## Credits
 
